@@ -1,3 +1,80 @@
-.btn-margin {
-  margin: 7px 3px;
+@media screen { /* Mobile first */
+
+	/* Screen styles only - separate from print styles */
+	
+	html, body, #body, #root {
+		font: 100%/1.5 Lato, Corbel, 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+		height: 100%;
+	}
+
+	body, #body, #root {
+		/*background: #3f3f3f;*/
+		display: flex;
+		flex-direction: column;
+	}
+
+	.main-wrapper {
+		flex: 1 0 auto;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+
+	h1, h2, h3, h4, h5, h6, label {
+		color: inherit;
+		font-family: Lora, Constantia, 'Palatino Linotype',Palatino, 'Times New Roman', Times, serif;
+		font-weight: 700;
+		line-height: 1.1;
+	}
+
+	.material-icons {
+		vertical-align: middle;
+	}
+
+	.btn-margin {
+		margin: 7px 3px;
+	}
+
+
+	
+}
+
+@media only screen and (min-width: 480px) {
+
+}
+
+@media only screen and (max-width : 600px) {
+}
+
+@media only screen and (min-width: 640px) {
+	h1 { font-size: 2.500rem;	line-height: 1.0;	margin-bottom: 1.66667rem;	}
+	h2 { font-size: 2.000rem;	line-height: 1.1; margin-bottom: 1.33333rem;	}
+	h3 { font-size: 1.500rem;	line-height: 1.1;	margin-bottom: 1.00000rem;	}
+}
+
+@media only screen and (min-width: 768px) {
+	
+}
+
+@media only screen and (min-width: 980px) {
+	
+}
+
+
+@media only screen and (max-width : 992px) {
+ 
+}
+
+@media only screen and (min-width: 1280px) {
+	h1 { font-size: 3.000rem;	line-height: 1.0;	margin-bottom: 2.00000rem;	}
+	h2 { font-size: 2.250rem;	line-height: 1.1; margin-bottom: 1.50000rem;	}
+	h3 { font-size: 1.750rem;	line-height: 1.1;	margin-bottom: 1.16667rem;	}
+}
+
+@media only screen and (min-width: 1600px) {
+
+}
+
+@media only screen and (min-width: 1980px) {
+    
 }

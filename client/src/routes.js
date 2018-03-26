@@ -13,17 +13,31 @@ const handleAuthentication = (nextState, replace) => {
     auth.handleAuthentication();
   }
 }
-
+//<Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
 export const makeMainRoutes = () => {
   return (
     <Router history={history} component={App}>
-      <div>
-        <Route path="/" render={(props) => <App auth={auth} {...props} />} />
-        <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
+      <div id="body">
+        
+        <Route path="/" render={(props) => {
+          return (
+            
+              <div className="main-wrapper">
+                <App auth={auth} {...props} />
+                <Home auth={auth} {...props} />
+              </div>
+            
+          )}
+        } />
+        
         <Route path="/callback" render={(props) => {
           handleAuthentication(props);
           return <Callback {...props} /> 
         }}/>
+        
+        <footer className="page-footer">
+          <div>Footer stuff here</div>
+        </footer>
       </div>
     </Router>
   );

@@ -30,7 +30,7 @@ class App extends Component {
         <Navbar fluid>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">Auth0 - React</a>
+              <a href="/">Base of Clubs</a>
             </Navbar.Brand>
             <Button
               bsStyle="primary"
@@ -46,7 +46,7 @@ class App extends Component {
                     className="btn-margin"
                     onClick={this.login.bind(this)}
                   >
-                    Log In
+                    Log In / Register
                   </Button>
                 )
             }

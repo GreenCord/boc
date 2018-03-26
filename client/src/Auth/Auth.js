@@ -1,5 +1,4 @@
 import history from '../history';
-import dotenv from 'dotenv';
 import auth0 from 'auth0-js';
 
 const DOMAIN = process.env.REACT_APP_AUTH_DOMAIN;
@@ -16,7 +15,7 @@ export default class Auth {
     redirectUri: REDIRECTURI,
     audience: AUDIENCE,
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile'
 	});
 
 	login() {
@@ -28,7 +27,10 @@ export default class Auth {
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.getProfile = this.getProfile.bind(this);
   }
+
+  userProfile;
 
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
@@ -66,6 +68,24 @@ export default class Auth {
     // Access Token's expiry time
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
+  }
+
+  getAccessToken() {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('No access token found.');
+    }
+    return accessToken;
+  }
+
+  getProfile(cb) {
+    let accessToken = this.getAccessToken();
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+      }
+      cb(err, profile);
+    });
   }
 
 }
