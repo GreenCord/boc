@@ -1,0 +1,148 @@
+@media screen { /* Mobile first */
+
+	/* Screen styles only - separate from print styles */
+	
+	html, body {
+		font: 100%/1.5 'Raleway', Corbel, 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+		height: 100%;
+	}
+
+	body {
+		background: #262626;
+		color: #ccc097;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.main-wrapper {
+		flex: 1 0 auto;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+
+	.bgcolor-light {
+		background: #ccc097;
+		color: #871e31;
+	}
+
+	.buffer-top {
+		padding-top: 20px;
+	}
+
+	.buffer-bottom {
+		padding-bottom: 20px;
+	}
+
+	.banner {
+		padding: 2.5rem;
+	}
+
+	.navbar-default {
+		background-color: #871e31;
+		border-radius: 0;
+		border: 0;
+		color: #efefef;
+	}
+
+	.navbar-default .navbar-brand,
+	.navbar-default .navbar-brand:focus, 
+	.navbar-default .navbar-brand:hover
+	{
+		color: #efefef;
+	}
+
+
+	.navbar-default .navbar-nav>li>a
+	{
+		color: #efefef;
+	}
+
+	.navbar-default .navbar-nav>li>a:focus, 
+	.navbar-default .navbar-nav>li>a:hover
+	{
+		background-color: #687061;
+		color: #ccc097;
+	}
+
+	.panel.panel-default,
+	.panel-body {
+		color: #262626;
+	}
+
+
+
+	h1, h2, h3, h4, h5, h6, label {
+		/*color: inherit;*/
+		font-family: 'Josefin Sans', Corbel, 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+		font-weight: 700;
+		line-height: 1.1;
+		text-transform: uppercase;
+	}
+
+	header, footer {
+		background: #0e0e0e;
+		color: #dfdfdf;
+		padding: 2.5rem;
+	}
+
+	header {
+		background: #afafaf url('./img/papers.jpg') top left no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+		color: #0e0e0e;
+		font-weight: 700;
+		margin-bottom: 1.25rem;
+		text-shadow: 0 1px 1px #fff;
+	}
+
+	header h1 {
+		font-size: 4rem;
+	}
+
+	.material-icons {
+		vertical-align: middle;
+	}
+
+	
+}
+
+@media only screen and (min-width: 480px) {
+
+}
+
+@media only screen and (max-width : 600px) {
+}
+
+@media only screen and (min-width: 640px) {
+	h1 { font-size: 2.500rem;	line-height: 1.0;	margin-bottom: 1.66667rem;	}
+	h2 { font-size: 2.000rem;	line-height: 1.1; margin-bottom: 1.33333rem;	}
+	h3 { font-size: 1.500rem;	line-height: 1.1;	margin-bottom: 1.00000rem;	}
+}
+
+@media only screen and (min-width: 768px) {
+	
+}
+
+@media only screen and (min-width: 980px) {
+	
+}
+
+
+@media only screen and (max-width : 992px) {
+ 
+}
+
+@media only screen and (min-width: 1280px) {
+	h1 { font-size: 3.000rem;	line-height: 1.0;	margin-bottom: 2.00000rem;	}
+	h2 { font-size: 2.250rem;	line-height: 1.1; margin-bottom: 1.50000rem;	}
+	h3 { font-size: 1.750rem;	line-height: 1.1;	margin-bottom: 1.16667rem;	}
+}
+
+@media only screen and (min-width: 1600px) {
+
+}
+
+@media only screen and (min-width: 1980px) {
+    
+}

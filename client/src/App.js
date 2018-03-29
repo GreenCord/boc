@@ -23,45 +23,63 @@ class App extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated, nickname } = this.props.auth;
 
     return (
       <div>
-        <Navbar fluid>
+        <Navbar className="navbar-default">
           <Navbar.Header>
+            <button
+              className="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#boc_menu"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
             <Navbar.Brand>
               <a href="/">Base of Clubs</a>
             </Navbar.Brand>
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'home')}
-            >
-              Home
-            </Button>
-            {
-              !isAuthenticated() && (
-                  <Button
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.login.bind(this)}
-                  >
-                    Log In / Register
-                  </Button>
-                )
-            }
-            {
-              isAuthenticated() && (
-                  <Button
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.logout.bind(this)}
-                  >
-                    Log Out
-                  </Button>
-                )
-            }
           </Navbar.Header>
+          <div className="collapse navbar-collapse pull-right" id="boc_menu">
+            <ul class="nav navbar-nav">
+              {
+                !isAuthenticated() && (
+                    <li>
+                      <a onClick={this.goTo.bind(this, 'home')}>Home</a>
+                    </li>
+                    )
+              }
+              {
+                !isAuthenticated() && (
+                    <li>
+                      <a onClick={this.login.bind(this)}>
+                        Log In / Register
+                      </a>
+                    </li>
+                  )
+              }
+              {
+                isAuthenticated() && (
+                    <li>
+                      <a onClick={this.goTo.bind(this, 'home')}>Profile</a>
+                    </li>
+                  )
+              }
+              {
+                isAuthenticated() && (
+                    <li>
+                      <a onClick={this.logout.bind(this)}>
+                      Log Out
+                      </a>
+                    </li>
+                  )
+              }
+            </ul>
+          </div>
         </Navbar>
       </div>
     );
