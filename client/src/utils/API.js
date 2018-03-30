@@ -10,6 +10,15 @@ export default {
 			method: 'get',
 			url: '/api/user/find/'+id
 		});
+	},
+
+	createUser: function(data) {
+		console.log('RA|/utils/API: Axios creating user with data:',data);
+		return axios({
+			method: 'post',
+			url: '/api/user/create',
+			data: data
+		});
 	}
 
 }

@@ -8,6 +8,15 @@ var async = require('async');
 // Create a user
 exports.user_create = (req,res)=>{
 	console.log('UNIMPLEMENTED: Create a user');
+	console.log('User data:',req.body);
+
+	user.create(req.body)
+	.then(dbUser=>{
+		console.log('User created! dbUser:',dbUser);
+		return res.json(dbUser);
+	})
+	.catch(err=>res.json(err));
+
 };
 
 // READ
@@ -21,9 +30,12 @@ exports.user_findOne = (req,res)=>{
 	console.log('Find one user - ',req.params.id);
 
 	user.findOne({auth0_id: req.params.id})
-	.then(dbUser=>res.json(dbUser))
+	.then(dbUser=>{
+		console.log('User found:',dbUser);
+		res.json(dbUser)
+	})
 	.catch(err=>res.json(err));
-	
+
 };
 
 // UPDATE

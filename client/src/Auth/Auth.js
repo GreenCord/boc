@@ -82,24 +82,41 @@ export default class Auth {
   getProfile(cb) {
     let accessToken = this.getAccessToken();
     this.auth0.client.userInfo(accessToken, (err, profile) => {
+      
       if (profile) {
-        console.log('AUTH0 - profile found - ',profile);
+        // console.log('AUTH0 - profile found - ',profile);
         this.userProfile = profile;
 
         // check db for profile.sub
-        API.findUser(encodeURI(profile.sub))
-        .then(res=>{
-          console.log('RA|/auth/auth.js - response received',res);
-        // if found, update last login
-        if (res.data) {
-          console.log('RA|/auth/auth.js - user found, do stuff', res.data);
+        if (!this.userProfile.checked) {
+          API.findUser(encodeURI(profile.sub))
+          .then(res=>{
+            // if found, update last login
+            if (res.data) {
+              console.log('RA|/auth/auth.js - user found, do stuff', res.data);
+              this.userProfile.checked = true;
+              // stuff to do:
+              // update lastlogin_at
+            } else {
+              // if not found, create user
+              console.log('RA|/auth/auth.js - no user found, create new user');
+              const data = {
+                auth0_id: profile.sub,
+                username: profile.name
+              }
+              API.createUser(data)
+              .then(res=>{
+                console.log('RA|/auth/auth.js - user created:',res);
+              })
+              .catch(err=>console.log(err));
+            } // end else if
+
+          })
+          .catch(err=>console.log(err));
         } else {
-          // if not found, create user
-          console.log('RA|/auth/auth.js - no user found, do stuff', res.data);
-        }
-        
-        })
-        .catch(err=>console.log(err));
+          console.log('User was already checked.');
+        }// end if userProfile checked
+
       } // end if profile
       cb(err, profile);
     });
