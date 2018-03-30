@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   render() {
-    const { isAuthenticated, nickname } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     return (
       <div>
@@ -35,17 +35,17 @@ class App extends Component {
               data-target="#boc_menu"
               aria-expanded="false"
             >
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
             </button>
             <Navbar.Brand>
               <a href="/">Base of Clubs</a>
             </Navbar.Brand>
           </Navbar.Header>
           <div className="collapse navbar-collapse pull-right" id="boc_menu">
-            <ul class="nav navbar-nav">
+            <ul className="nav navbar-nav">
               {
                 !isAuthenticated() && (
                     <li>
@@ -81,6 +81,7 @@ class App extends Component {
             </ul>
           </div>
         </Navbar>
+        <div className="row"><div className="col-xs-12"></div></div>
       </div>
     );
   }

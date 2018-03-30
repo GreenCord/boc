@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col, Clearfix } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 const Unauth = props => (
 	<Grid fluid={true}>

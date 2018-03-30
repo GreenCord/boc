@@ -1,5 +1,6 @@
 import history from '../history';
 import auth0 from 'auth0-js';
+import API from '../utils/API';
 
 const DOMAIN = process.env.REACT_APP_AUTH_DOMAIN;
 const CLIENTID = process.env.REACT_APP_AUTH_CLIENTID;
@@ -82,8 +83,24 @@ export default class Auth {
     let accessToken = this.getAccessToken();
     this.auth0.client.userInfo(accessToken, (err, profile) => {
       if (profile) {
+        console.log('AUTH0 - profile found - ',profile);
         this.userProfile = profile;
-      }
+
+        // check db for profile.sub
+        API.findUser(encodeURI(profile.sub))
+        .then(res=>{
+          console.log('RA|/auth/auth.js - response received',res);
+        // if found, update last login
+        if (res.data) {
+          console.log('RA|/auth/auth.js - user found, do stuff', res.data);
+        } else {
+          // if not found, create user
+          console.log('RA|/auth/auth.js - no user found, do stuff', res.data);
+        }
+        
+        })
+        .catch(err=>console.log(err));
+      } // end if profile
       cb(err, profile);
     });
   }
