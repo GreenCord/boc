@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import { Navbar, Button } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
+
+import { withUser, update } from './utils/withUser';
+
 import "./App.css";
 
-// test
-// import Auth from './Auth/Auth.js';
 
-// const auth = new Auth();
-
-// auth.login();
 
 class App extends Component {
   goTo(route) {
@@ -24,6 +22,7 @@ class App extends Component {
 
   render() {
     const { isAuthenticated } = this.props.auth;
+    const { user } = this.props;
 
     return (
       <div>
@@ -44,7 +43,7 @@ class App extends Component {
               <a href="/">Base of Clubs</a>
             </Navbar.Brand>
           </Navbar.Header>
-          <div className="collapse navbar-collapse pull-right" id="boc_menu">
+          <div className="collapse navbar-collapse text-right" id="boc_menu">
             <ul className="nav navbar-nav">
              {/*{
                 !isAuthenticated() && (
@@ -87,4 +86,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withUser(App);

@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const groupSchema = new Schema({
 	// User name managed in our app
 	groupname: { type: String, required: true},
+	description: { type: String, required: true},
 
 	// Date stuff
 	created_at: { type: Date, default: Date.now},
@@ -15,7 +16,7 @@ const groupSchema = new Schema({
 
 
 	// Users in Group, Admins
-	member: [{type: Schema.Types.ObjectId, ref:'Member'}]
+	member: [{type: Schema.Types.ObjectId, ref:'Member'}],
 	admin: [{type: Schema.Types.ObjectId, ref:'Admin'}],
 
 	// User's Posts on a group

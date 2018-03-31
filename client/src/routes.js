@@ -1,10 +1,14 @@
 import React from 'react';
 import { Route, Router } from 'react-router-dom';
+
 import App from './App';
 import Home from './Home/Home';
 import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import ProfileContainer from './Profile/ProfileContainer';
+import CreateClub from './Club/CreateClub';
+
+import { withUser, update } from './utils/withUser';
 import history from './history';
 
 const auth = new Auth();
@@ -37,12 +41,22 @@ export const makeMainRoutes = () => {
 
               <div>
                 <App auth={auth} {...props} />
-                <h1>PROFILE PAGE! WOOOO</h1>
                 <ProfileContainer auth={auth} {...props} />
               </div>
 
             )}
           }/> 
+
+          <Route path="/newclub" render={(props) =>{
+            return (
+
+              <div>
+                <App auth={auth} {...props} />
+                <CreateClub auth={auth} {...props} />
+              </div>
+
+            )}
+          }/>
           
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);

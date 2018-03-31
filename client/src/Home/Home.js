@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Unauth from './Unauth';
-import Profile from '../Profile/Profile';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 class Home extends Component {
@@ -19,6 +17,7 @@ class Home extends Component {
             </Row>
           </Grid>
           <Grid fluid={false}>
+           { !isAuthenticated() && (
             <Row className="show-grid text-center">
               <Col xs={12} sm={6} md={4}>
                 <h2>Sign up</h2>
@@ -30,6 +29,17 @@ class Home extends Component {
                 <h2>Do Stuff</h2>
               </Col>
             </Row>
+            )
+            }
+            {
+              isAuthenticated() && (
+                <Row className="show-grid text-center">
+                  <Col xs={12}>
+                  <h2>User is logged in, this will display</h2>
+                  </Col>
+                </Row>
+              )
+            }
           </Grid>
         </Grid>
     );

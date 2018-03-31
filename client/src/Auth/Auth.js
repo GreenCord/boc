@@ -2,6 +2,8 @@ import history from '../history';
 import auth0 from 'auth0-js';
 import API from '../utils/API';
 
+import update from '../utils/withUser';
+
 const DOMAIN = process.env.REACT_APP_AUTH_DOMAIN;
 const CLIENTID = process.env.REACT_APP_AUTH_CLIENTID;
 const REDIRECTURI = process.env.REACT_APP_AUTH_REDIRECTURI;
@@ -36,6 +38,7 @@ export default class Auth {
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
+        console.log('Auth.js for withUser, authResult',authResult);
         this.setSession(authResult);
         history.replace('/profile');
       } else if (err) {
@@ -51,6 +54,11 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    let data = {
+      auth0_id: authResult.idTokenPayload.sub,
+      username: authResult.idTokenPayload.name
+    }
+    // update(data);
     // navigate to the home route
     history.replace('/profile');
   }

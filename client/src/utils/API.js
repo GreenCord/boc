@@ -19,6 +19,15 @@ export default {
 			url: '/api/user/create',
 			data: data
 		});
+	},
+
+	createGroup: function(data) {
+		console.log('RA|/utils/API: Axios creating a group with data:',data);
+		return axios({
+			method: 'post',
+			url: '/api/group/create',
+			data: data
+		});
 	}
 
 }
