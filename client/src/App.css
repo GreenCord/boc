@@ -2,12 +2,12 @@
 
 	/* Screen styles only - separate from print styles */
 	
-	html, body {
+	html, body, #root, #body {
 		font: 100%/1.5 'Raleway', Corbel, 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 		height: 100%;
 	}
 
-	body {
+	body, #body {
 		background: #262626;
 		color: #ccc097;
 		display: flex;

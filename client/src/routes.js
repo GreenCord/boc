@@ -4,6 +4,7 @@ import App from './App';
 import Home from './Home/Home';
 import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
+import ProfileContainer from './Profile/ProfileContainer';
 import history from './history';
 
 const auth = new Auth();
@@ -18,22 +19,37 @@ export const makeMainRoutes = () => {
   return (
     <Router history={history} component={App}>
       <div id="body">
-        
-        <Route path="/" render={(props) => {
-          return (
-            
-              <div className="main-wrapper">
+        <div className="main-wrapper">
+
+          <Route exact path="/" render={(props) => {
+          
+            return (
+              <div>
                 <App auth={auth} {...props} />
                 <Home auth={auth} {...props} />
               </div>
-            
-          )}
-        } />
-        
-        <Route path="/callback" render={(props) => {
-          handleAuthentication(props);
-          return <Callback {...props} /> 
-        }}/>
+            )}
+          
+          }/>
+
+          <Route path="/profile" render={(props) =>{
+            return (
+
+              <div>
+                <App auth={auth} {...props} />
+                <h1>PROFILE PAGE! WOOOO</h1>
+                <ProfileContainer auth={auth} {...props} />
+              </div>
+
+            )}
+          }/> 
+          
+          <Route path="/callback" render={(props) => {
+            handleAuthentication(props);
+            return <Callback {...props} /> 
+          }}/>
+
+        </div>
         
         <footer className="page-footer">
           <div>Footer stuff here</div>

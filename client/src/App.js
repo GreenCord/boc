@@ -46,13 +46,13 @@ class App extends Component {
           </Navbar.Header>
           <div className="collapse navbar-collapse pull-right" id="boc_menu">
             <ul className="nav navbar-nav">
-              {
+             {/*{
                 !isAuthenticated() && (
                     <li>
-                      <a onClick={this.goTo.bind(this, 'home')}>Home</a>
+                      <a onClick={this.goTo.bind(this, '')}>Home</a>
                     </li>
                     )
-              }
+              }*/}
               {
                 !isAuthenticated() && (
                     <li>
@@ -65,7 +65,7 @@ class App extends Component {
               {
                 isAuthenticated() && (
                     <li>
-                      <a onClick={this.goTo.bind(this, 'home')}>Profile</a>
+                      <a onClick={this.goTo.bind(this, 'profile')}>Profile</a>
                     </li>
                   )
               }

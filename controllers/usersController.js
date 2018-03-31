@@ -7,7 +7,7 @@ var async = require('async');
 // CREATE
 // Create a user
 exports.user_create = (req,res)=>{
-	console.log('UNIMPLEMENTED: Create a user');
+	console.log('Create a user');
 	console.log('User data:',req.body);
 
 	user.create(req.body)

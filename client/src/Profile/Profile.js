@@ -9,7 +9,6 @@ import './Profile.css';
 
 class Profile extends Component {
 
-
   getUserInfo (id) {
     console.log('RA|/profile/profile.js - getting user info:',id);
     API.findUser(encodeURI(id))
@@ -47,7 +46,7 @@ class Profile extends Component {
     return (
       <div className="container">
         <div className="profile-area">
-          <h1>{profile.name}</h1>
+          <h2>{profile.name}</h2>
           <Panel header="Profile">
             <img src={profile.picture} alt="profile" />
             <div>
