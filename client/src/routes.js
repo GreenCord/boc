@@ -7,6 +7,7 @@ import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import ProfileContainer from './Profile/ProfileContainer';
 import CreateClub from './Club/CreateClub';
+import ShowClub from './Club/ShowClub';
 
 import { withUser, update } from './utils/withUser';
 import history from './history';
@@ -55,6 +56,15 @@ export const makeMainRoutes = () => {
                 <CreateClub auth={auth} {...props} />
               </div>
 
+            )}
+          }/>
+
+          <Route path="/clubs" render={(props) =>{
+            return (
+              <div>
+                <App auth={auth} {...props} />
+                <ShowClub auth={auth} {...props} />
+              </div>
             )}
           }/>
           

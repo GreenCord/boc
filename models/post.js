@@ -16,6 +16,10 @@ const postSchema = new Schema({
 	// Post Content
 	content: { type: String, required: true}
 
+	// Post Comments
+	// User's Posts on a group
+	comment: [{ type: Schema.Types.ObjectId, ref: 'Comment'}]
+
 });
 
 postSchema

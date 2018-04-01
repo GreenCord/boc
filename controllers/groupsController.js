@@ -65,6 +65,13 @@ exports.group_create = (req,res)=>{
 // Find all groups
 exports.group_findAll = (req,res)=>{
 	console.log('UNIMPLEMENTED Express Controller/Route: Find all groups');
+	group.find({})
+	// .populate('member post')
+	.then(dbGroup=>{
+		console.log('Groups found:',dbGroup);
+		res.json(dbGroup)
+	})
+	.catch(err=>res.json(err));
 }
 // Find one group
 exports.group_findOne = (req,res)=>{

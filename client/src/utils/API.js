@@ -28,6 +28,22 @@ export default {
 			url: '/api/group/create',
 			data: data
 		});
+	},
+
+	findGroups: function(id) {
+		console.log('RA|/utils/API: Axois finding group(s).',id);
+		// if no id, find all groups
+		if (!id) {
+			return axios({
+				method: 'get',
+				url: '/api/group/find'
+			});
+		} else {
+			return axios({
+				method: 'get',
+				url: '/api/group/find/'+id
+			});
+		}
 	}
 
 }
