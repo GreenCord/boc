@@ -19,7 +19,12 @@ const userSchema = new Schema({
 
 	// User's Posts on a group and Comments on Posts
 	post: [{ type: Schema.Types.ObjectId, ref: 'Post'}],
-	comment: [{ type: Schema.Types.ObjectId, ref: 'Comment'}]
+	comment: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
+
+	// Group relations
+	adminof: [{ type: Schema.Types.ObjectId, ref: 'Adminof' }],
+	memberof: [{ type: Schema.Types.ObjectId, ref:'Memberof'}]
+
 
 });
 

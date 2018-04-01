@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const groupSchema = new Schema({
 	// User name managed in our app
 	groupname: { type: String, required: true},
+	groupname_id: { type: String, required: true},
 	description: { type: String, required: true},
 
 	// Date stuff
