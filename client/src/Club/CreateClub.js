@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Panel, ControlLabel, Glyphicon, Button, Form, FormGroup, FormControl } from 'react-bootstrap';
-import Moment from 'react-moment';
+import { Grid, Row, Col } from 'react-bootstrap';
+// import Moment from 'react-moment';
 
 import CreateClubForm from './CreateClubForm';
 
@@ -78,6 +78,7 @@ class CreateClub extends Component {
 
   render() {
     const { profile, user } = this.state;
+    // const { profile, user } = this.state;
     // console.log('CreateClub:', this.state);
     return (
       <Grid fluid={true}>
@@ -98,6 +99,7 @@ class CreateClub extends Component {
                 description={this.state.description}
                 handleFormSubmit={this.handleFormSubmit}
                 handleInputChange={this.handleInputChange}
+                profile={profile}
                 {...this.props}
               />
             </Col>

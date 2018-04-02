@@ -17,8 +17,8 @@ const groupSchema = new Schema({
 
 
 	// Users in Group, Admins
-	member: [{type: Schema.Types.ObjectId, ref:'Member'}],
-	admin: [{type: Schema.Types.ObjectId, ref:'Admin'}],
+	member: [{type: Schema.Types.ObjectId, ref:'User'}],
+	admin: [{type: Schema.Types.ObjectId, ref:'User'}],
 
 	// User's Posts on a group
 	post: [{ type: Schema.Types.ObjectId, ref: 'Post'}]

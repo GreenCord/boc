@@ -8,8 +8,9 @@ import Auth from './Auth/Auth';
 import ProfileContainer from './Profile/ProfileContainer';
 import CreateClub from './Club/CreateClub';
 import ShowClub from './Club/ShowClub';
+import ClubContainer from './Club/ClubContainer';
 
-import { withUser, update } from './utils/withUser';
+// import { withUser, update } from './utils/withUser';
 import history from './history';
 
 const auth = new Auth();
@@ -59,11 +60,20 @@ export const makeMainRoutes = () => {
             )}
           }/>
 
-          <Route path="/clubs" render={(props) =>{
+          <Route exact path="/clubs" render={(props) =>{
             return (
               <div>
                 <App auth={auth} {...props} />
                 <ShowClub auth={auth} {...props} />
+              </div>
+            )}
+          }/>
+
+          <Route exact path="/clubs/:id" render={(props) =>{
+            return (
+              <div>
+                <App auth={auth} {...props} />
+                <ClubContainer auth={auth} {...props} />
               </div>
             )}
           }/>

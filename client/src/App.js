@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Navbar } from 'react-bootstrap';
 
-import { withUser, update } from './utils/withUser';
+// import { withUser, update } from './utils/withUser';
 
 import "./App.css";
 
@@ -22,7 +22,7 @@ class App extends Component {
 
   render() {
     const { isAuthenticated } = this.props.auth;
-    const { user } = this.props;
+    // const { user } = this.props;
 
     return (
       <div>
@@ -90,4 +90,4 @@ class App extends Component {
   }
 }
 
-export default withUser(App);
+export default App;

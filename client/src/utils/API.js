@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const KEY = process.env.REACT_APP_APPKEY;
+// const KEY = process.env.REACT_APP_APPKEY;
 
 export default {
 

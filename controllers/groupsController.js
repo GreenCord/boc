@@ -64,7 +64,7 @@ exports.group_create = (req,res)=>{
 // READ
 // Find all groups
 exports.group_findAll = (req,res)=>{
-	console.log('UNIMPLEMENTED Express Controller/Route: Find all groups');
+	console.log('Express Controller/Route: Find all groups');
 	group.find({})
 	// .populate('member post')
 	.then(dbGroup=>{
@@ -75,7 +75,19 @@ exports.group_findAll = (req,res)=>{
 }
 // Find one group
 exports.group_findOne = (req,res)=>{
-	console.log('UNIMPLEMENTED Express Controller/Route: Find one group');
+	console.log('UNIMPLEMENTED Express Controller/Route: Find one group',req.params.id);
+	group.findById(req.params.id)
+	.populate('member')
+	.then(dbGroup=>{
+		console.log('Group found:',dbGroup);
+		res.json(dbGroup)
+	})
+	.catch(err=>res.json(err));
+}
+
+// Find user's groups
+exports.group_findByUser = (req,res)=>{
+	console.log('UNIMPLEMENTED Express Controller/Route: Find groups by user');
 }
 
 // UPDATE

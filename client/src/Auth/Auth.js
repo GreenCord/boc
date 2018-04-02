@@ -2,7 +2,7 @@ import history from '../history';
 import auth0 from 'auth0-js';
 import API from '../utils/API';
 
-import update from '../utils/withUser';
+// import update from '../utils/withUser';
 
 const DOMAIN = process.env.REACT_APP_AUTH_DOMAIN;
 const CLIENTID = process.env.REACT_APP_AUTH_CLIENTID;
@@ -54,10 +54,10 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    let data = {
-      auth0_id: authResult.idTokenPayload.sub,
-      username: authResult.idTokenPayload.name
-    }
+    // let data = {
+    //   auth0_id: authResult.idTokenPayload.sub,
+    //   username: authResult.idTokenPayload.name
+    // }
     // update(data);
     // navigate to the home route
     history.replace('/profile');
