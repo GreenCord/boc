@@ -96,6 +96,11 @@ exports.group_update = (req,res)=>{
 	console.log('UNIMPLEMENTED Express Controller/Route: Update a group');
 }
 
+// Add user to a group (as member)
+exports.group_addMember = (req,res)=>{
+	console.log('UNIMPLEMENTED Express Controller/Route: Add member ' + req.params.uid + ' to group ' + req.params.id + '.');
+}
+
 // DELETE
 // Soft delete a group
 exports.group_deleteSoft = (req,res)=>{

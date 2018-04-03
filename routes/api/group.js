@@ -10,8 +10,14 @@ router.get('/find',groupsController.group_findAll);
 // group_findOne
 router.get('/find/:id',groupsController.group_findOne);
 
+// group_findByUser
+router.get('/find/user/:id',groupsController.group_findByUser);
+
 // group_update
 router.post('/update/:id',groupsController.group_update);
+
+// group_addMember
+router.post('/update/:id/:uid',groupsController.group_addMember);
 
 // group_deleteSoft
 router.post('/delete/:id',groupsController.group_deleteSoft);

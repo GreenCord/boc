@@ -30,6 +30,14 @@ export default {
 		});
 	},
 
+	joinGroup: function(id,uid) {
+		console.log('RA|/utils/API: Axios adding member ' + uid + ' to group ' + id);
+		return axios({
+			method: 'post',
+			url: '/api/group/update/'+id+'/'+uid,
+		});
+	},
+
 	findGroups: function(id) {
 		console.log('RA|/utils/API: Axois finding group(s).',id);
 		// if no id, find all groups
