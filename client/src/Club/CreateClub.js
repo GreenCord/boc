@@ -33,6 +33,7 @@ class CreateClub extends Component {
     API.createGroup(info)
     .then(res=>{
       console.log('API call complete to create group:',res);
+      this.props.history.replace(`/clubs/${res.data._id}`);
     })
     .catch(err=>console.log(err))
   };

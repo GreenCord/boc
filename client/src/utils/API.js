@@ -52,6 +52,14 @@ export default {
 				url: '/api/group/find/'+id
 			});
 		}
+	},
+
+	findGroupByUser: function(uid) {
+		console.log('RA|/utils/API: Axios finding groups by UID',uid);
+		return axios({
+			method: 'get',
+			url: '/api/group/find/user/'+uid
+		})
 	}
 
 }

@@ -87,7 +87,14 @@ exports.group_findOne = (req,res)=>{
 
 // Find user's groups
 exports.group_findByUser = (req,res)=>{
-	console.log('UNIMPLEMENTED Express Controller/Route: Find groups by user');
+	console.log('UNIMPLEMENTED Express Controller/Route: Find groups by user',req.params.id);
+	group.find(
+		{	member: req.params.id }
+	).then(dbGroups=>{
+		console.log('Groups found:',dbGroups);
+		res.json(dbGroups);
+	}).catch(err=>res.json(err));
+
 }
 
 // UPDATE
@@ -99,6 +106,30 @@ exports.group_update = (req,res)=>{
 // Add user to a group (as member)
 exports.group_addMember = (req,res)=>{
 	console.log('UNIMPLEMENTED Express Controller/Route: Add member ' + req.params.uid + ' to group ' + req.params.id + '.');
+	user.findOneAndUpdate(
+			{_id: req.params.uid },
+			{$push: {
+				memberof: req.params.id
+				}
+			},
+			{ new: true }
+		).then(dbUser=>{
+			console.log('User updated with new group',dbUser);
+			group.findOneAndUpdate(
+				{_id: req.params.id},
+				{$push: {
+					member: req.params.uid
+					}
+				},
+				{ new: true }
+			).then(dbGroup=>{
+				console.log('Group updated with new user',dbGroup);
+				res.json(dbGroup);
+			}).catch(err=>res.json(err));
+		}).catch(err=>res.json(err));
+
+	
+
 }
 
 // DELETE

@@ -14,7 +14,7 @@ class ShowClub extends Component {
 	}
 
 	getUserInfo (id) {
-    console.log('RA|/profile/profile.js - getting user info:',id);
+    console.log('RA|/Club/ShowClub.js - getting user info:',id);
     API.findUser(encodeURI(id))
     .then(res=>{
       if (res.data) {
@@ -92,23 +92,23 @@ class ShowClub extends Component {
 						{this.state.groups.length ? (
 							<div>
 								{this.state.groups.map(group=>(
-									<Col xs={12} md={6} lg={4} key={group._id}>
+									<Col xs={12} md={6} lg={6} key={group._id}>
 										<Panel>
 												<div className="panel-heading">
 													<h2>{group.groupname}</h2>
 												</div>
 												<div className="panel-body">
 													<p>{group.description}</p>
-													<p>Members: {group.member.length} (debug: {group.member[0]})</p>
+													<p>Members: {group.member.length} {/*(debug: {group.member[0]})*/}</p>
 												</div>
 												<div className="panel-footer">
 													<Row>
-													<Col xs={6} sm={4} md={3} lg={2} xl={1}>
+													<Col xs={6}>
 														<Button className="btn btn-primary btn-block" onClick={() => this.handleViewClick(group._id)}>View Club</Button>
 													</Col>
 													{
 														isAuthenticated() && (
-															<Col xs={6} sm={4} md={3} lg={2} xl={1}>
+															<Col xs={6}>
 																{
 																	group.member.indexOf(user._id) === -1 && 
 																	<Button className="btn btn-default btn-block" onClick={() => this.handleJoinClick(group._id,user._id)}>Join Club</Button>

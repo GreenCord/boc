@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Panel, ControlLabel, Glyphicon, Button } from 'react-bootstrap';
+import { Grid, Row, Col, Panel, ControlLabel, Glyphicon, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Moment from 'react-moment';
 
 
@@ -9,6 +9,10 @@ import './Profile.css';
 
 
 class Profile extends Component {
+
+  state = {
+    clubs: []
+  }
 
   goTo(route) {
     this.props.history.replace(`/${route}`)
@@ -20,10 +24,24 @@ class Profile extends Component {
     .then(res=>{
       if (res.data) {
         this.setState({user: res.data});
+        this.getUserGroups(res.data._id);
         console.log(this.state);
       }
     })
   };
+
+  getUserGroups (id) {
+    console.log('RA|/profile/profile.js - getting user\'s groups:',id);
+    API.findGroupByUser(id)
+    .then(res=>{
+      if (res.data) {
+        console.log('User\'s groups found',res.data);
+        this.setState({ clubs: res.data });
+      } else {
+        console.log('No groups found for user.')
+      }
+    })
+  }
 
   componentWillMount() {
     this.setState({ 
@@ -76,15 +94,23 @@ class Profile extends Component {
               </Col>
               <Col xs={12} sm={6}>
                 <h2>Club Membership</h2>
-                <div className="list-group">
-                  <a className="list-group-item" href="/">Club Name Here</a>
-                  <a className="list-group-item" href="/">Club Name Here</a>
-                  <a className="list-group-item" href="/">Club Name Here</a>
-                  <a className="list-group-item" href="/">Club Name Here</a>
-                </div>
+                {/*<pre>{JSON.stringify(clubs,null,2)}</pre>*/}
+                {this.state.clubs.length ? (
+                  <ListGroup>
+                    {this.state.clubs.map(club => {
+                      return (
+                        <ListGroupItem key={club._id} onClick={this.goTo.bind(this, 'clubs/' + club._id)}>
+                          {club.groupname}
+                        </ListGroupItem>
+                      );
+                    })}
+                  </ListGroup>
+                ) : (
+                  <p>You don't belong to any clubs yet.</p>
+                )}
                 <Row className="show-grid">
               <Col xs={6}><Button onClick={this.goTo.bind(this, 'newclub')} className="btn btn-primary btn-block">Create Club</Button></Col>
-              <Col xs={6}><Button className="btn btn-success btn-block">Find a Club</Button></Col>
+              <Col xs={6}><Button onClick={this.goTo.bind(this, 'clubs')} className="btn btn-success btn-block">Find a Club</Button></Col>
                 </Row>
               </Col>
             </Row>

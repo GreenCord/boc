@@ -40,7 +40,7 @@ class App extends Component {
               <span className="icon-bar"></span>
             </button>
             <Navbar.Brand>
-              <a href="/">Base of Clubs</a>
+              <a href="/">&clubs; Base of Clubs</a>
             </Navbar.Brand>
           </Navbar.Header>
           <div className="collapse navbar-collapse text-right" id="boc_menu">
