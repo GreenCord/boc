@@ -1,11 +1,45 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, Grid, Row, Col, Button } from 'react-bootstrap';
+import PostsContainer from '../Posts/PostsContainer';
+import PostsForm from '../Posts/PostsForm';
 import API from '../utils/API';
 
 class ClubContainer extends Component {
 	state = {
 		clubinfo: [],
+		postcontent: ''
 	};
+
+	getUserInfo (id) {
+    console.log('RA|/profile/profile.js - getting user info:',id);
+    API.findUser(encodeURI(id))
+    .then(res=>{
+      if (res.data) {
+        this.setState({user: res.data});
+        console.log(this.state);
+      }
+    })
+  };
+
+  componentWillMount() {
+    this.setState({ 
+      profile: {},
+      user: {}
+    });
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      console.log('Createclub component will mount, if statement');
+      getProfile((err, profile) => {
+        this.setState({ profile });
+        this.getUserInfo(profile.sub);
+      });
+
+    } else {
+      console.log('Createclub component will mount, else statement');
+      this.setState({ profile: userProfile });
+      this.getUserInfo(userProfile.sub);
+    }
+  };
   
 	componentDidMount() {
 		this.fetchClubInfo(this.props.match.params.id);
@@ -19,13 +53,37 @@ class ClubContainer extends Component {
 		});
 	}
 
+	handleInputChange = event => {
+		const { name, value } = event.target;
+		this.setState({
+			[name]: value
+		});
+		console.log('Testing:',this.state.postcontent);
+	};
+
+	handleFormSubmit = event => {
+		event.preventDefault();
+		let info = {
+			author_id: this.state.user._id,
+			group_id: this.props.match.params.id,
+			content: this.state.postcontent
+		};
+		console.log('Post Form Submitted, submitting:',info.content,' from user: ',info.author_id, ' to group: ', info.group_id);
+		API.createPost(info)
+		.then(res=> {
+			console.log('API call complete to create post:',res);
+			this.setState({postcontent: ''});
+			this.fetchClubInfo(info.group_id);
+		})
+	}
+
 	// handleViewClick = id => {
 	// 	console.log('Clicked - view club: ',id);
 	// 	this.props.history.replace(`/clubs/${id}`);
 	// }
 
 	render() {
-		const { clubinfo } = this.state;
+		const { clubinfo, profile, user } = this.state;
 		return (
 			<Grid fluid={true}>
 				<Grid fluid={false}>
@@ -36,6 +94,7 @@ class ClubContainer extends Component {
 							<p>Debug: GroupID - {this.props.match.params.id}</p>
 						</Col>
 					</Row>
+					<hr />
 					<Row className="show-grid">
 						<Col xs={12}><h2>Club Members</h2></Col>
 					</Row>
@@ -53,6 +112,28 @@ class ClubContainer extends Component {
 								<h2>{this.state.loadmsg}</h2>
 							</Col>
 						)}
+					</Row>
+					<hr />
+					<Row>
+						<PostsContainer 
+						  auth={this.auth} 
+						  gid={this.props.match.params.id} 
+						  posts={clubinfo.post} 
+						 />
+					</Row>
+					<Row>
+					<Col xs={9}>
+						<PostsForm 
+							auth={this.auth} 
+							gid={this.props.match.params.id} 
+							postcontent={this.state.postcontent} 
+							handleInputChange={this.handleInputChange}
+							handleFormSubmit={this.handleFormSubmit}
+							profile={profile}
+							user={user}
+							{...this.props}
+						/>
+					</Col>
 					</Row>
 				</Grid>
 			</Grid>

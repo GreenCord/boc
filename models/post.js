@@ -14,7 +14,7 @@ const postSchema = new Schema({
 	deleted: { type: Boolean, default: false},
 
 	// Post Content
-	content: { type: String, required: true}
+	content: { type: String, required: true},
 
 	// Post Comments
 	// User's Posts on a group

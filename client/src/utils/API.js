@@ -60,6 +60,15 @@ export default {
 			method: 'get',
 			url: '/api/group/find/user/'+uid
 		})
+	},
+
+	createPost: function(data) {
+		console.log('RA|/utils/API: Axios creating post with',data);
+		return axios({
+			method: 'post',
+			url: '/api/post/create',
+			data: data
+		});
 	}
 
 }

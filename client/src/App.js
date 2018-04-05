@@ -62,8 +62,11 @@ class App extends Component {
                   )
               }
               
-              {/*Always show this*/}
-              <li><a onClick={this.goTo.bind(this, 'clubs')}>Clubs</a></li>
+              {
+                isAuthenticated() && (
+                  <li><a onClick={this.goTo.bind(this, 'clubs')}>Clubs</a></li>
+                )
+              }
 
               {
                 isAuthenticated() && (
