@@ -75,9 +75,9 @@ exports.group_findAll = (req,res)=>{
 }
 // Find one group
 exports.group_findOne = (req,res)=>{
-	console.log('UNIMPLEMENTED Express Controller/Route: Find one group',req.params.id);
+	console.log('Express Controller/Route: Find one group',req.params.id);
 	group.findById(req.params.id)
-	.populate('member')
+	.populate('member post.author_id post')
 	.then(dbGroup=>{
 		console.log('Group found:',dbGroup);
 		res.json(dbGroup)

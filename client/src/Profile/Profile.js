@@ -126,14 +126,14 @@ class Profile extends Component {
                 <h3>{profile.nickname}</h3>
                 <p>
                   Joined Base of Clubs:&nbsp;
-                  <Moment format="M/d/YYYY">
-                    {user.created_at_formatted}
+                  <Moment format="M/D/YYYY">
+                    {user.created_at}
                   </Moment>
                 </p>
                 <p>
                   Last Login:&nbsp;
-                  <Moment format="M/d/YYYY h:mm a">
-                    {user.lastlogin_at_formatted}
+                  <Moment format="M/D/YYYY h:mm a">
+                    {user.lastlogin_at}
                   </Moment>
                 </p>
               </div>

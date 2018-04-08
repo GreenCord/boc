@@ -5,7 +5,7 @@ import axios from 'axios';
 export default {
 
 	findUser: function(id) {
-		console.log('RA|/utils/API: Axios finding user. id:',id);
+		// console.log('RA|/utils/API: Axios finding user. id:',id);
 		return axios({
 			method: 'get',
 			url: '/api/user/find/'+id
@@ -13,7 +13,7 @@ export default {
 	},
 
 	createUser: function(data) {
-		console.log('RA|/utils/API: Axios creating user with data:',data);
+		// console.log('RA|/utils/API: Axios creating user with data:',data);
 		return axios({
 			method: 'post',
 			url: '/api/user/create',
@@ -22,7 +22,7 @@ export default {
 	},
 
 	createGroup: function(data) {
-		console.log('RA|/utils/API: Axios creating a group with data:',data);
+		// console.log('RA|/utils/API: Axios creating a group with data:',data);
 		return axios({
 			method: 'post',
 			url: '/api/group/create',
@@ -31,7 +31,7 @@ export default {
 	},
 
 	joinGroup: function(id,uid) {
-		console.log('RA|/utils/API: Axios adding member ' + uid + ' to group ' + id);
+		// console.log('RA|/utils/API: Axios adding member ' + uid + ' to group ' + id);
 		return axios({
 			method: 'post',
 			url: '/api/group/update/'+id+'/'+uid,
@@ -39,7 +39,7 @@ export default {
 	},
 
 	findGroups: function(id) {
-		console.log('RA|/utils/API: Axois finding group(s).',id);
+		// console.log('RA|/utils/API: Axios finding group(s).',id);
 		// if no id, find all groups
 		if (!id) {
 			return axios({
@@ -55,7 +55,7 @@ export default {
 	},
 
 	findGroupByUser: function(uid) {
-		console.log('RA|/utils/API: Axios finding groups by UID',uid);
+		// console.log('RA|/utils/API: Axios finding groups by UID',uid);
 		return axios({
 			method: 'get',
 			url: '/api/group/find/user/'+uid
@@ -69,6 +69,18 @@ export default {
 			url: '/api/post/create',
 			data: data
 		});
+	},
+
+	findPosts: function(id) {
+		console.log('RA|/utils/API: Axios finding posts in group',id);
+		if (!id) {
+			return;
+		} else {
+			return axios({
+				method: 'get',
+				url: '/api/post/find/'+id
+			});
+		}
 	}
 
 }

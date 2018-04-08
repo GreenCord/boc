@@ -7,11 +7,12 @@ import API from '../utils/API';
 class ClubContainer extends Component {
 	state = {
 		clubinfo: [],
-		postcontent: ''
+		postcontent: '',
+		posts: []
 	};
 
 	getUserInfo (id) {
-    console.log('RA|/profile/profile.js - getting user info:',id);
+    // console.log('RA|/profile/profile.js - getting user info:',id);
     API.findUser(encodeURI(id))
     .then(res=>{
       if (res.data) {
@@ -28,14 +29,14 @@ class ClubContainer extends Component {
     });
     const { userProfile, getProfile } = this.props.auth;
     if (!userProfile) {
-      console.log('Createclub component will mount, if statement');
+      // console.log('Createclub component will mount, if statement');
       getProfile((err, profile) => {
         this.setState({ profile });
         this.getUserInfo(profile.sub);
       });
 
     } else {
-      console.log('Createclub component will mount, else statement');
+      // console.log('Createclub component will mount, else statement');
       this.setState({ profile: userProfile });
       this.getUserInfo(userProfile.sub);
     }
@@ -48,8 +49,16 @@ class ClubContainer extends Component {
 	fetchClubInfo = (id) => {
 		API.findGroups(id)
 		.then(groups=>{
-			this.setState({clubinfo: groups.data});
+			console.log('Found club info:',groups);
+			this.setState({
+				clubinfo: groups.data
+			});
 			console.log('Showing state after finding groups:',this.state);
+			console.log('Get posts');
+			this.fetchClubPosts(id);
+			// if (this.state.posts.length > 0) {
+
+			// }
 		});
 	}
 
@@ -74,7 +83,18 @@ class ClubContainer extends Component {
 			console.log('API call complete to create post:',res);
 			this.setState({postcontent: ''});
 			this.fetchClubInfo(info.group_id);
+			this.fetchClubPosts(info.group_id);
 		})
+	}
+
+	fetchClubPosts = (id) => {
+		console.log('UNIMPLEMENTED - RA|/Posts/PostsContainer - finding posts for group id',id);
+		API.findPosts(id)
+		.then(res=>{
+			this.setState({posts: res.data});
+			console.log('Testing found posts',res.data);
+			console.log('Testing state:',this.state.posts);
+		});
 	}
 
 	// handleViewClick = id => {
@@ -118,7 +138,8 @@ class ClubContainer extends Component {
 						<PostsContainer 
 						  auth={this.auth} 
 						  gid={this.props.match.params.id} 
-						  posts={clubinfo.post} 
+						  posts={this.state.posts}
+						  fetchClubPosts={this.fetchClubPosts} 
 						 />
 					</Row>
 					<Row>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Panel, Col } from 'react-bootstrap';
+import API from '../utils/API';
 
 class PostsContainer extends Component {
 	state = {
@@ -7,26 +8,23 @@ class PostsContainer extends Component {
 	};
 
 	componentWillMount(){
-		this.fetchClubPosts(this.props.gid);
-	}
-
-	fetchClubPosts = (id) => {
-		console.log('UNIMPLEMENTED - RA|/Posts/PostsContainer - finding posts for group id',id);
+		// this.fetchClubPosts(this.props.gid);
 	}
 
 	render() {
 		return (
 			<Col xs={12}>
-				{this.state.posts.length ? (
+				{this.props.posts ? (
 					<div>
-						{this.state.posts.map(post=>{
+						<h2>Group Newsfeed</h2>
+						{this.props.posts.map(post=>{
 							return (
 							<Panel header="Postfeed" key={post._id}>
-							 	<div className="panel-heading"><strong>Username</strong></div>
+							 	<div className="panel-heading"><strong>{post.author_id.username}</strong></div>
 							 	<div className="panel-body">
-							 		<p>post content</p>
+							 		<p>{post.content}</p>
 					      </div>
-					      <div className="panel-footer small">04:30pm 2018-03-20</div>
+					      <div className="panel-footer small">{post.updated_at_formatted}</div>
 					    </Panel>
 					    );
 						})}

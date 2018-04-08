@@ -43,5 +43,12 @@ userSchema
 .get(function(){
 	return moment(this.lastlogin_at).local().format('MM-dd-YYYY h:mm a');
 });
+userSchema.set('toObject', {
+    virtuals: true
+});
+
+userSchema.set('toJSON', {
+    virtuals: true
+});
 
 module.exports = mongoose.model('User', userSchema);

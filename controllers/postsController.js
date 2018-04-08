@@ -6,10 +6,11 @@ var async = require('async');
 
 // POST create post, save to user and group
 exports.post_create = (req,res)=>{
-	console.log('UNIMPLEMENTED - Express Controller/Route: Create a post:');
+	console.log('Express Controller/Route: Create a post:');
 
 	post.create({
 		author_id: req.body.author_id,
+		group_id: req.body.group_id,
 		content: req.body.content
 	})
 	.then(dbPost =>{
@@ -35,4 +36,20 @@ exports.post_create = (req,res)=>{
 	})
 	.catch(err=>res.json(err));
 		
+}
+
+// GET find posts by ID (group)
+exports.post_find = (req,res)=>{
+	console.log('UNIMPLEMENTED: Express Controller/Route: Find posts');
+	post.find({
+		group_id: req.params.id
+	})
+	.populate('author_id')
+	.sort('-updated_at')
+	.then(dbPosts => {
+		console.log('Posts for group ' + req.params.id + 'found:',dbPosts);
+		return res.json(dbPosts);
+	})
+	.catch(err=>res.json(err));
+	
 }
