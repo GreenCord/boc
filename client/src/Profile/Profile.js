@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Panel, ControlLabel, Glyphicon, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Moment from 'react-moment';
+import FontAwesome from 'react-fontawesome'
 
 
 import API from '../utils/API';
@@ -74,15 +75,25 @@ class Profile extends Component {
     return (
       <div>
         <Grid fluid={true}>
-          <Grid fluid={false}>
+          <Grid fluid={false} className="club-bg">
             <Row className="show-grid">
               <Col xs={12} className="text-center">
                 <img src={profile.picture} alt="Profile Pic" className="img-circle" />
                 <h1>{user.username}</h1>
+                <p>Joined Base of Clubs:&nbsp;
+                      <Moment format="M/D/YYYY">
+                        {user.created_at}
+                      </Moment>&nbsp;
+                      Last Login:&nbsp;
+                      <Moment format="M/D/YYYY h:mm a">
+                        {user.lastlogin_at}
+                      </Moment>
+                    </p>
+                  {/*<pre>{JSON.stringify(profile, null, 2)}</pre>*/}
               </Col>
             </Row>
             <Row className="show-grid">
-              <Col xs={12} sm={6} className="bgcolor-light">
+              {/*<Col xs={12} sm={6} className="bgcolor-light">
                 <h2>Posts from Your Clubs</h2>
                 <Panel header="Postfeed">
                   <div className="panel-heading"><strong>Username</strong> (Club Name)</div>
@@ -91,9 +102,9 @@ class Profile extends Component {
                   </div>
                   <div className="panel-footer small">04:30pm 2018-03-20</div>
                 </Panel>
-              </Col>
-              <Col xs={12} sm={6}>
-                <h2>Club Membership</h2>
+              </Col>*/}
+              <Col xs={12} sm={6} smOffset={3}>
+                <h2>Club Memberships</h2>
                 {/*<pre>{JSON.stringify(clubs,null,2)}</pre>*/}
                 {this.state.clubs.length ? (
                   <ListGroup>
@@ -109,38 +120,13 @@ class Profile extends Component {
                   <p>You don't belong to any clubs yet.</p>
                 )}
                 <Row className="show-grid">
-              <Col xs={6}><Button onClick={this.goTo.bind(this, 'newclub')} className="btn btn-primary btn-block">Create Club</Button></Col>
-              <Col xs={6}><Button onClick={this.goTo.bind(this, 'clubs')} className="btn btn-success btn-block">Find a Club</Button></Col>
+              <Col xs={6}><Button onClick={this.goTo.bind(this, 'newclub')} className="btn btn-primary btn-block"><FontAwesome name="plus-circle" />&nbsp;Create Club</Button></Col>
+              <Col xs={6}><Button onClick={this.goTo.bind(this, 'clubs')} className="btn btn-success btn-block"><FontAwesome name="search" />&nbsp;Find a Club</Button></Col>
                 </Row>
               </Col>
             </Row>
           </Grid>
         </Grid>
-        <div className="container">
-          <div className="profile-area">
-            <h2>{profile.name}</h2>
-            <Panel header="Profile">
-              <img src={profile.picture} alt="profile" />
-              <div>
-                <ControlLabel><Glyphicon glyph="user" /> {user.username}</ControlLabel>
-                <h3>{profile.nickname}</h3>
-                <p>
-                  Joined Base of Clubs:&nbsp;
-                  <Moment format="M/D/YYYY">
-                    {user.created_at}
-                  </Moment>
-                </p>
-                <p>
-                  Last Login:&nbsp;
-                  <Moment format="M/D/YYYY h:mm a">
-                    {user.lastlogin_at}
-                  </Moment>
-                </p>
-              </div>
-              <pre>{JSON.stringify(profile, null, 2)}</pre>
-            </Panel>
-          </div>
-        </div>
       </div>
     );
   }

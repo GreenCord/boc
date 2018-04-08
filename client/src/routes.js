@@ -85,8 +85,8 @@ export const makeMainRoutes = () => {
 
         </div>
         
-        <footer className="page-footer">
-          <div>Footer stuff here</div>
+        <footer className="page-footer text-center">
+          <div>&copy; 2018 &ndash; Steven Martinez</div>
         </footer>
       </div>
     </Router>

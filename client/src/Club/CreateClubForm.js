@@ -9,7 +9,7 @@ const CreateClubForm = props => (
         
       <FormGroup controlId="groupname">
         <Col componentClass={ControlLabel} xs={12}>
-          Club Name (debug for {props._id})
+          Club Name {/*(debug for {props._id})*/}
         </Col>
         <Col xs={12}>
           <FormControl 

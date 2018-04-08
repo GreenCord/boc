@@ -1,0 +1,26 @@
+.main-wrapper {
+	background: #0e0e0e url('/img/people_blur_opt.jpg');
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.home_banner_1 {
+	padding: 4rem 0;
+}
+
+.home_banner_2 {
+	background: #0e0e0e;
+	background: rgba(25,25,25,0.45);
+	padding: 6rem 0;
+}
+
+.home_banner_3 {
+	background: #871e31;
+	padding: 2rem 0;
+}
+
+.home_banner_4 {
+	background: #0e0e0e;
+	background: rgba(25,25,25,0.67);
+	padding: 4rem 0;
+}

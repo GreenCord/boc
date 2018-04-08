@@ -2,11 +2,13 @@ import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 const Unauth = props => (
-	<Grid fluid={true}>
+	<Grid fluid={true} className="bgcolor-light">
 		<Grid fluid={false}>
 			<Row className="show-grid text-center">
 				<Col xs={12}>
+					<hr />
 					<h1>Welcome to Base of Clubs</h1>
+					<hr />
 				</Col>
 			</Row>
 		</Grid>

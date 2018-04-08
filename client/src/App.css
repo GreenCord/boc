@@ -23,6 +23,7 @@
 
 	.bgcolor-light {
 		background: #ccc097;
+		background: rgba(204, 192, 151,0.67);
 		color: #871e31;
 	}
 
@@ -38,11 +39,21 @@
 		padding: 2.5rem;
 	}
 
+	.container.club-bg {
+		background: #0e0e0e;
+		background: rgba(14,14,14,.8);
+		padding: 1rem;
+	}
+	.container-fluid, .container {
+		padding: 0;
+	}
+
 	.navbar-default {
 		background-color: #871e31;
 		border-radius: 0;
 		border: 0;
 		color: #efefef;
+		padding: 5px 15px;
 	}
 
 	.navbar-default .navbar-brand,

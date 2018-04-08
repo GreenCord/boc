@@ -106,7 +106,7 @@ class ClubContainer extends Component {
 		const { clubinfo, profile, user } = this.state;
 		return (
 			<Grid fluid={true}>
-				<Grid fluid={false}>
+				<Grid fluid={false} className="club-bg">
 					<Row className="show-grid">
 						<Col xs={12}>
 							<h1>{clubinfo.groupname}</h1>
