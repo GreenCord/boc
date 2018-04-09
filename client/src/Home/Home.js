@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 import "./Home.css";
-const FontAwesome = require('react-fontawesome');
+import FontAwesome from 'react-fontawesome';
 
 class Home extends Component {
   login() {
@@ -90,7 +90,7 @@ class Home extends Component {
                 <hr />
                 <h4>Features</h4>
                 <Row>
-                  <Col xs={6}>
+                  <Col xs={12} sm={6}>
                     <h5>Free Tier</h5>
                     <ul>
                       <li>Personal account</li>
@@ -98,7 +98,7 @@ class Home extends Component {
                       <li>Post Messages</li>
                     </ul>
                   </Col>
-                  <Col xs={6}>
+                  <Col xs={12} sm={6}>
                     <h5>Coming Soon</h5>
                     <ul>
                       <li>Club Dues &ndash; Members pay dues according to your schedule</li>
