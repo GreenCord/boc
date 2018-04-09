@@ -83,7 +83,8 @@ class Profile extends Component {
                 <p>Joined Base of Clubs:&nbsp;
                       <Moment format="M/D/YYYY">
                         {user.created_at}
-                      </Moment>&nbsp;
+                      </Moment>
+                      <br />
                       Last Login:&nbsp;
                       <Moment format="M/D/YYYY h:mm a">
                         {user.lastlogin_at}
@@ -103,15 +104,16 @@ class Profile extends Component {
                   <div className="panel-footer small">04:30pm 2018-03-20</div>
                 </Panel>
               </Col>*/}
-              <Col xs={12} sm={6} smOffset={3}>
-                <h2>Club Memberships</h2>
+              <Col xs={12} sm={6} smOffset={3} className="text-center">
+                <hr />
+                <h2>Club Memberships<br />&clubs;</h2>
                 {/*<pre>{JSON.stringify(clubs,null,2)}</pre>*/}
                 {this.state.clubs.length ? (
                   <ListGroup>
                     {this.state.clubs.map(club => {
                       return (
                         <ListGroupItem key={club._id} onClick={this.goTo.bind(this, 'clubs/' + club._id)}>
-                          {club.groupname}
+                          {club.groupname} <FontAwesome name="arrow-right" className="pull-right" />
                         </ListGroupItem>
                       );
                     })}

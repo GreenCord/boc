@@ -111,7 +111,6 @@ class ClubContainer extends Component {
 						<Col xs={12}>
 							<h1>{clubinfo.groupname}</h1>
 							<p>{clubinfo.description}</p>
-							<p>Debug: GroupID - {this.props.match.params.id}</p>
 						</Col>
 					</Row>
 					<hr />
@@ -121,11 +120,13 @@ class ClubContainer extends Component {
 					<Row className="show-grid">
 						{this.state.clubinfo.member ? (
 							<div>
+								<ul>
 								{this.state.clubinfo.member.map(mem=>(
 									<Col xs={12} md={6} lg={4} key={mem._id}>
-										<h3>{mem.username}</h3>
+										<li>{mem.username}</li>
 									</Col>
 								))}
+								</ul>
 							</div>
 						) : (
 							<Col xs={12}>

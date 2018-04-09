@@ -21,6 +21,15 @@ export default {
 		});
 	},
 
+	updateUser: function(data) {
+		console.log('RA|/utils/API: Axios updating user with data:',data);
+		return axios({
+			method: 'post',
+			url: '/api/user/update/'+data.id,
+			data: {lastlogin_at: data.lastlogin_at}
+		});
+	},
+
 	createGroup: function(data) {
 		// console.log('RA|/utils/API: Axios creating a group with data:',data);
 		return axios({

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, Grid, Row, Col, Button, Panel } from 'react-bootstrap';
 import API from '../utils/API';
 
+import FontAwesome from 'react-fontawesome';
 
 class ShowClub extends Component {
 	state = {
@@ -84,8 +85,9 @@ class ShowClub extends Component {
 			<Grid fluid={true}>
 				<Grid fluid={false}>
 					<Row className="show-grid">
-						<Col xs={12}>
-							<h1>List of Clubs</h1>
+						<Col xs={12} className="text-center">
+							<h1>&clubs;&nbsp;List of Clubs&nbsp;&clubs;</h1>
+							<hr />
 						</Col>
 					</Row>
 					<Row className="show-grid">
@@ -95,7 +97,7 @@ class ShowClub extends Component {
 									<Col xs={12} md={6} lg={6} key={group._id}>
 										<Panel>
 												<div className="panel-heading">
-													<h2>{group.groupname}</h2>
+													<h2><FontAwesome name="users" />&nbsp;{group.groupname}</h2>
 												</div>
 												<div className="panel-body">
 													<p>{group.description}</p>

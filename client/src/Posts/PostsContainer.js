@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Panel, Col } from 'react-bootstrap';
 import API from '../utils/API';
 
+import FontAwesome from 'react-fontawesome';
+
 class PostsContainer extends Component {
 	state = {
 		posts: [],
@@ -16,11 +18,14 @@ class PostsContainer extends Component {
 			<Col xs={12}>
 				{this.props.posts ? (
 					<div>
-						<h2>Group Newsfeed</h2>
+						<h2 id="newsfeed">Group Newsfeed</h2>
 						{this.props.posts.map(post=>{
 							return (
 							<Panel header="Postfeed" key={post._id}>
-							 	<div className="panel-heading"><strong>{post.author_id.username}</strong></div>
+							 	<div className="panel-heading">
+							 		<FontAwesome name="user" />&nbsp;
+							 		<strong>{post.author_id.username}</strong>
+							 	</div>
 							 	<div className="panel-body">
 							 		<p>{post.content}</p>
 					      </div>

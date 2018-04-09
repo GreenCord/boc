@@ -38,7 +38,7 @@ export default class Auth {
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        console.log('Auth.js for withUser, authResult',authResult);
+        // console.log('Auth.js for withUser, authResult',authResult);
         this.setSession(authResult);
         history.replace('/profile');
       } else if (err) {
@@ -105,6 +105,10 @@ export default class Auth {
               this.userProfile.checked = true;
               // stuff to do:
               // update lastlogin_at
+              let updated_user = res.data;
+              let datenow = new Date(Date.now());
+              updated_user.lastlogin_at = datenow.toISOString();
+              API.updateUser(updated_user);
             } else {
               // if not found, create user
               console.log('RA|/auth/auth.js - no user found, create new user');

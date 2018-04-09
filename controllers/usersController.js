@@ -41,7 +41,16 @@ exports.user_findOne = (req,res)=>{
 // UPDATE
 // Update a user
 exports.user_update = (req,res)=>{
-	console.log('UNIMPLEMENTED: Update a user');
+	console.log('In Process: Update a user',req.body,req.params.id);
+	user.findOneAndUpdate(
+		{_id: req.params.id},
+		req.body,
+		{ upsert: false }
+	).then(dbUser=>{
+		console.log('User updated:',dbUser);
+		res.json(dbUser);
+	})
+	.catch(err=>res.json(err));
 };
 
 // DELETE
