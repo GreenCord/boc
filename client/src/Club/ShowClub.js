@@ -75,6 +75,7 @@ class ShowClub extends Component {
 		API.joinGroup(id,uid)
 		.then(joined=>{
 			console.log('User joined group',joined);
+			this.props.history.replace(`/clubs/${id}`);
 		})
 	}
 

@@ -108,7 +108,7 @@ exports.group_addMember = (req,res)=>{
 	console.log('UNIMPLEMENTED Express Controller/Route: Add member ' + req.params.uid + ' to group ' + req.params.id + '.');
 	user.findOneAndUpdate(
 			{_id: req.params.uid },
-			{$push: {
+			{$addToSet: {
 				memberof: req.params.id
 				}
 			},
