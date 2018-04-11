@@ -6,7 +6,7 @@ import API from '../utils/API';
 
 const DOMAIN = process.env.REACT_APP_AUTH_DOMAIN;
 const CLIENTID = process.env.REACT_APP_AUTH_CLIENTID;
-const REDIRECTURI = process.env.REACT_APP_AUTH_REDIRECTURI;
+// const REDIRECTURI = process.env.REACT_APP_AUTH_REDIRECTURI;
 const AUDIENCE = process.env.REACT_APP_AUTH_AUDIENCE;
 
 console.log('Test env',DOMAIN);
@@ -15,8 +15,8 @@ export default class Auth {
 	auth0 = new auth0.WebAuth({
 		domain: DOMAIN,
 		clientID: CLIENTID,
-    // redirectUri: 'https://secret-earth-54754.herokuapp.com/callback',
-    redirectUri: REDIRECTURI,
+    redirectUri: 'https://secret-earth-54754.herokuapp.com/callback',
+    // redirectUri: REDIRECTURI,
     audience: AUDIENCE,
     responseType: 'token id_token',
     scope: 'openid profile'
